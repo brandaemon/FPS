@@ -5,9 +5,10 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody rb;
-    public float maxSpeed = 10.0f;
-    public float speed = 100.0f;
-    public float rotationSpeed = 250.0f;
+    public float maxSpeed;
+    public float speed;
+    public float rotationSpeed;
+    public float jumpForce;
     private float horizontal;
     private float vertical;
     private float mouseX;
@@ -34,7 +35,13 @@ public class PlayerMovement : MonoBehaviour
         
         float rotation = mouseX * rotationSpeed;
         transform.Rotate(Vector3.up, rotation * Time.deltaTime);
-        print(rb.velocity.magnitude);
+        
+        // print(rb.velocity.magnitude);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.AddForce(transform.up * jumpForce/*, ForceMode.Impulse*/);
+        }
     }
 
     private void FixedUpdate()

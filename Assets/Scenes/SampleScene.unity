@@ -677,9 +677,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efe8adafab30c2742b93014e6a01d34d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 800
-  offset: 1
+  speed: 500
+  offset: 0.5
   ammo: 10
+  maxAmmo: 12
+  reserves: 99
   raycastDistance: 100
   bulletPrefab: {fileID: 1568038652320443145, guid: f5d418b2686101940b216889d989caf8, type: 3}
 --- !u!1001 &1053435333
@@ -1425,7 +1427,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 479, y: -221}
+  m_AnchoredPosition: {x: 434.4, y: -219.1}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2048052478
@@ -1690,6 +1692,7 @@ MonoBehaviour:
   maxSpeed: 10
   speed: 500
   rotationSpeed: 500
+  jumpForce: 1000
 --- !u!4 &2146723973 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3204791394489382814, guid: e8adeab97cdfa634c975ec5cb4393eea, type: 3}

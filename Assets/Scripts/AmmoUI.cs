@@ -17,6 +17,6 @@ public class AmmoUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ammoText.text = "Ammo: " + cameraMovement.ammo;
+        ammoText.text = "Ammo: " + cameraMovement.ammo + "/ " + cameraMovement.reserves;
     }
 }

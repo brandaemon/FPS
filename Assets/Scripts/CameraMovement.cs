@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    public float speed = 800.0f;
+    public float speed;
     private float vertical;
-    public float offset = 0.5f;
-    public int ammo = 10;
+    public float offset;
+    public int ammo;
+    public int maxAmmo;
+    public int reserves;
     public int raycastDistance;
 
     public GameObject bulletPrefab;
@@ -20,15 +22,28 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Vertical look
         vertical = Input.GetAxis("Mouse Y");
         transform.Rotate(Vector3.right, -vertical * speed *  Time.deltaTime);
 
+        // Shoot
         if (Input.GetButtonDown("Fire1") && ammo > 0)
         {
             Instantiate(bulletPrefab, transform.position + transform.forward * offset, Quaternion.LookRotation(transform.forward) * Quaternion.Euler(90, 90, 90));
             ammo--;
         }
 
+        // Reload
+        if (Input.GetKeyDown("r"))
+        {
+            while(ammo < maxAmmo && reserves > 0)
+            {
+                ammo++;
+                reserves--;
+            }
+        }
+
+        // Interact
         if (Input.GetKeyDown("e"))
         {
             RaycastHit hit;
