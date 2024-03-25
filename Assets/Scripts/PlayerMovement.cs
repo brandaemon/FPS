@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
         
         // print(rb.velocity.magnitude);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded())
         {
             rb.AddForce(transform.up * jumpForce/*, ForceMode.Impulse*/);
         }
@@ -53,5 +53,14 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = rb.velocity.normalized * maxSpeed;
         }
+    }
+
+    private bool isGrounded()
+    {
+        Vector3 center = transform.position + Vector3.down * 0.5f;
+        float radius = 0.5f;
+
+        // Ground layer is index 8, bit shifted for layermask
+        return Physics.CheckSphere(center, radius, 1 << 8);
     }
 }
