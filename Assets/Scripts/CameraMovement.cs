@@ -11,6 +11,8 @@ public class CameraMovement : MonoBehaviour
     public int maxAmmo;
     public int reserves;
     public int raycastDistance;
+    private bool isReloading = false;
+    public float reloadTime;
 
     public GameObject bulletPrefab;
     // Start is called before the first frame update
@@ -27,20 +29,16 @@ public class CameraMovement : MonoBehaviour
         transform.Rotate(Vector3.right, -vertical * speed *  Time.deltaTime);
 
         // Shoot
-        if (Input.GetButtonDown("Fire1") && ammo > 0)
+        if (Input.GetButtonDown("Fire1") && ammo > 0 && !isReloading)
         {
             Instantiate(bulletPrefab, transform.position + transform.forward * offset, Quaternion.LookRotation(transform.forward) * Quaternion.Euler(90, 90, 90));
             ammo--;
         }
 
         // Reload
-        if (Input.GetKeyDown("r"))
+        if (Input.GetKeyDown("r") && !isReloading)
         {
-            while(ammo < maxAmmo && reserves > 0)
-            {
-                ammo++;
-                reserves--;
-            }
+            StartCoroutine(Reload());
         }
 
         // Interact
@@ -55,5 +53,22 @@ public class CameraMovement : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator Reload()
+    {
+        isReloading = true;
+        print("Reloading...");
+
+        yield return new WaitForSeconds(reloadTime);
+
+        while (ammo < maxAmmo && reserves > 0)
+        {
+            ammo++;
+            reserves--;
+        }
+
+        isReloading = false;
+        print("Reload complete");
     }
 }

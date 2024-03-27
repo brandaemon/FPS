@@ -683,6 +683,7 @@ MonoBehaviour:
   maxAmmo: 12
   reserves: 99
   raycastDistance: 100
+  reloadTime: 2.5
   bulletPrefab: {fileID: 1568038652320443145, guid: f5d418b2686101940b216889d989caf8, type: 3}
 --- !u!1001 &1053435333
 PrefabInstance:
