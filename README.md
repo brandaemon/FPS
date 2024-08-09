@@ -1,2 +1,2 @@
 # FPS
- Unity First Person Shooter Prototype
+ Unity 3d First Person Shooter Prototype
